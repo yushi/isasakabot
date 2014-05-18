@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en" ng-app="isasakaEventApp">
+<head>
+  <meta charset="utf-8">
+  <title>My HTML File</title>
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+  <script src="event.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div ng-controller="EventCtrl">
+      <h1>{{event_name}}</h1>
+      created by {{ owner }}
+      <br />
+      <table class="table table-bordered table-hover">
+        <tbody>
+          <tr>
+            <th class=col-sm-2>user</th>
+            <th class=col-sm-2 ng-repeat="header in headers">{{header}}</th>
+            <th class=col-sm-2>
+              <!-- form to add new column-->
+              <span class="glyphicon glyphicon-plus" ng-hide=adding_column ng-click="adding_column = true"></span>
+              <form class=col-sm-12 ng-show=adding_column ng-submit="add_column()">
+                <div class="input-group">
+                  <input type="text" class="form-control" ng-model="column_text"></input>
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type=submit>
+                      <span class="glyphicon glyphicon-floppy-save"></span>
+                    </button>
+                    <button class="btn btn-default" ng-click="column_text = null">
+                      <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                  </span>
+                </div>
+              </form>
+            </th>
+          </tr>
+          <tr ng-repeat="(name, data) in userdata">
+            <td class=col-sm-2>{{name}}</td>
+            <td class=col-sm-2 ng-repeat="d in data">
+              <span ng-hide="d.editing">{{d.msg}}</span>
+              <p class="text-right"><span ng-hide="d.editing" ng-click="d.editing = true" class="glyphicon glyphicon-edit"></span></p>
+              <form class=col-sm-12 ng-show=d.editing ng-submit="edit_cell(d)">
+                <div class="input-group">
+                  <input type="text" class="form-control" ng-model="d.cell_txt"></input>
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type=submit>
+                      <span class="glyphicon glyphicon-floppy-save"></span>
+                    </button>
+                    <button class="btn btn-default" ng-click="d.cell_txt = d.msg">
+                      <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                  </span>
+                </div>
+              </form>
+            </td>
+            <th>-</th>
+          </tr>
+        </tbody>
+      </table>
+      <!-- form to add new user-->
+      <span class="glyphicon glyphicon-plus" ng-hide=adding_user ng-click="adding_user = true"></span>
+      <form class=col-sm-5 ng-show=adding_user ng-submit="add_user()">
+        <div class="input-group">
+          <input type="text" class="form-control" ng-model="new_user" placeholder="Username"></input>
+          <span class="input-group-btn">
+            <button class="btn btn-default" type=submit>
+              <span class="glyphicon glyphicon-floppy-save"></span>
+            </button>
+            <button class="btn btn-default" ng-click="new_user = null">
+              <span class="glyphicon glyphicon-remove"></span>
+            </button>
+          </span>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
