@@ -10,7 +10,14 @@ isasakaEventApp.controller "EventCtrl", ($scope, $location, $http) ->
   $scope.load = ->
     $http.get("/hubot/event/" + $scope.event_name).success (data) ->
       $scope.owner = data.owner
-      $scope.headers = data.header
+      $scope.headers = []
+      for header, i in data.header
+        $scope.headers[i] =
+          msg: header
+          cell_txt: header
+          editing: false
+          idx: i
+      console.log $scope.headers
       $scope.userdata = {}
       for username of data.users
         $scope.userdata[username] = []
@@ -47,6 +54,18 @@ isasakaEventApp.controller "EventCtrl", ($scope, $location, $http) ->
       $scope.load()
 
 
+  $scope.edit_header = (data) ->
+    data.editing = false
+    return if data.msg is data.cell_txt
+    $http.post("/hubot/event/" + $scope.event_name,
+      type: "edit_header"
+      data:
+        idx: data.idx
+        txt: data.cell_txt
+    ).success ->
+      data.cell_text = ""
+      $scope.load()
+
   $scope.edit_cell = (data) ->
     data.editing = false
     return  if data.msg is data.cell_txt
@@ -62,4 +81,3 @@ isasakaEventApp.controller "EventCtrl", ($scope, $location, $http) ->
 
 
   $scope.load()
-
