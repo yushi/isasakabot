@@ -54,6 +54,9 @@ class EventMemo
     @robot.logger.info @data.header, val
     @data.users[name] = val
 
+  edit_header: (idx, txt) ->
+    @data.header[idx] = txt
+
   edit_cell: (name, idx, txt) ->
     @data.users[name][idx] = txt
 
@@ -116,6 +119,12 @@ module.exports = (robot) ->
       when 'add_user'
         name = req.body.data
         memo.add_user name
+        memo.update()
+        res.send 200
+      when 'edit_header'
+        idx = req.body.data.idx
+        txt = req.body.data.txt
+        memo.edit_header idx, txt
         memo.update()
         res.send 200
       when 'edit_cell'

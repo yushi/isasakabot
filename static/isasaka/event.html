@@ -3,22 +3,51 @@
 <head>
   <meta charset="utf-8">
   <title>My HTML File</title>
-  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
   <script src="event.js"></script>
 </head>
 <body>
   <div class="container">
     <div ng-controller="EventCtrl">
-      <h1>{{event_name}}</h1>
-      created by {{ owner }}
       <br />
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">{{ event_name }}</a>
+            <p class="navbar-text">created by {{ owner }}</p>
+          </div>
+        </div>
+      </nav>
       <table class="table table-bordered table-hover">
         <tbody>
           <tr>
             <th class=col-sm-2>user</th>
-            <th class=col-sm-2 ng-repeat="header in headers">{{header}}</th>
-            <th class=col-sm-2>
+            <th class=col-sm-2 ng-repeat="header in headers">
+              <span ng-hide="header.editing">{{header.msg}}</span>
+              <p class="text-right"><span ng-hide="header.editing" ng-click="header.editing = true" class="glyphicon glyphicon-edit"></span></p>
+              <form class=col-sm-12 ng-show=header.editing ng-submit="edit_header(header)">
+                <div class="input-group">
+                  <input type="text" class="form-control" ng-model="header.cell_txt"></input>
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type=submit>
+                      <span class="glyphicon glyphicon-floppy-save"></span>
+                    </button>
+                    <button class="btn btn-default" ng-click="header.cell_txt = header.msg">
+                      <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                  </span>
+                </div>
+              </form>
+            </th>
+            <th class=col-sm-1>
               <!-- form to add new column-->
               <span class="glyphicon glyphicon-plus" ng-hide=adding_column ng-click="adding_column = true"></span>
               <form class=col-sm-12 ng-show=adding_column ng-submit="add_column()">
