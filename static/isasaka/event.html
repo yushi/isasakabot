@@ -18,7 +18,7 @@
           <tr>
             <th class=col-sm-2>user</th>
             <th class=col-sm-2 ng-repeat="header in headers">{{header}}</th>
-            <th class=col-sm-2>
+            <th class=col-sm-1>
               <!-- form to add new column-->
               <span class="glyphicon glyphicon-plus" ng-hide=adding_column ng-click="adding_column = true"></span>
               <form class=col-sm-12 ng-show=adding_column ng-submit="add_column()">
