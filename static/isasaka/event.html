@@ -10,9 +10,22 @@
 <body>
   <div class="container">
     <div ng-controller="EventCtrl">
-      <h1>{{event_name}}</h1>
-      created by {{ owner }}
       <br />
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">{{ event_name }}</a>
+            <p class="navbar-text">created by {{ owner }}</p>
+          </div>
+        </div>
+      </nav>
       <table class="table table-bordered table-hover">
         <tbody>
           <tr>
