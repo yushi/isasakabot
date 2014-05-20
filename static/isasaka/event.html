@@ -49,15 +49,15 @@
             </th>
             <th class=col-sm-1>
               <!-- form to add new column-->
-              <span class="glyphicon glyphicon-plus" ng-hide=adding_column ng-click="adding_column = true"></span>
-              <form class=col-sm-12 ng-show=adding_column ng-submit="add_column()">
+              <span class="glyphicon glyphicon-plus" ng-hide=adding_column ng-click="focusNewColumn = true; adding_column = true"></span>
+              <form class=col-sm-12 ng-show=adding_column ng-submit="add_column(); focusNewColumn = false">
                 <div class="input-group">
-                  <input type="text" class="form-control" ng-model="column_text"></input>
+                  <input type="text" class="form-control" ng-model="column_text" focus-me="focusNewColumn"></input>
                   <span class="input-group-btn">
                     <button class="btn btn-default" type=submit>
                       <span class="glyphicon glyphicon-floppy-save"></span>
                     </button>
-                    <button class="btn btn-default" ng-click="column_text = null">
+                    <button class="btn btn-default" ng-click="column_text = null; focusNewColumn = false">
                       <span class="glyphicon glyphicon-remove"></span>
                     </button>
                   </span>
@@ -89,15 +89,15 @@
           <tr>
             <th class=col-sm-2>
               <!-- form to add new column-->
-              <span class="glyphicon glyphicon-plus" ng-hide=adding_user ng-click="adding_user = true"></span>
-              <form class=col-sm-12 ng-show=adding_user ng-submit="add_user()">
+              <span class="glyphicon glyphicon-plus" ng-hide=adding_user ng-click="focusNewUser = true; adding_user = true"></span>
+              <form class=col-sm-12 ng-show=adding_user ng-submit="add_user(); focusNewUser = false">
                 <div class="input-group">
-                  <input type="text" class="form-control" ng-model="new_user" placeholder="User"></input>
+                  <input type="text" class="form-control" ng-model="new_user" placeholder="User" focus-me="focusNewUser"></input>
                   <span class="input-group-btn">
                     <button class="btn btn-default" type=submit>
                       <span class="glyphicon glyphicon-floppy-save"></span>
                     </button>
-                    <button class="btn btn-default" ng-click="new_user = null">
+                    <button class="btn btn-default" ng-click="new_user = null; focusNewUser = false">
                       <span class="glyphicon glyphicon-remove"></span>
                     </button>
                   </span>
