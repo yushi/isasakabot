@@ -1,4 +1,13 @@
 isasakaEventApp = angular.module("isasakaEventApp", [])
+
+isasakaEventApp.directive 'focusMe', ()->
+  scope:
+    trigger: '=focusMe'
+  link: (scope, element)->
+    scope.$watch 'trigger', (value)->
+      element[0].focus() if value
+      scope.focusInput = false
+
 isasakaEventApp.controller "EventCtrl", ($scope, $location, $http) ->
   $scope.event_name = $location.search().event
   return  unless $scope.event_name
@@ -17,7 +26,7 @@ isasakaEventApp.controller "EventCtrl", ($scope, $location, $http) ->
           cell_txt: header
           editing: false
           idx: i
-      console.log $scope.headers
+          onmouse: false
       $scope.userdata = {}
       for username of data.users
         $scope.userdata[username] = []
@@ -28,6 +37,7 @@ isasakaEventApp.controller "EventCtrl", ($scope, $location, $http) ->
             editing: false
             name: username
             idx: i
+            onmouse: false
 
       $scope.data = data
 
@@ -79,5 +89,10 @@ isasakaEventApp.controller "EventCtrl", ($scope, $location, $http) ->
       data.cell_text = ""
       $scope.load()
 
+  $scope.mouseover = (data)->
+    data.onmouse = true
+
+  $scope.mouseleave = (data)->
+    data.onmouse = false
 
   $scope.load()
