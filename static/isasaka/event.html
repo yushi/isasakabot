@@ -30,9 +30,9 @@
         <tbody>
           <tr>
             <th class=col-sm-2>user</th>
-            <th class=col-sm-2 ng-repeat="header in headers">
+            <th class=col-sm-2 ng-repeat="header in headers" ng-mouseover="mouseover(header)" ng-mouseleave="mouseleave(header)">
               <span ng-hide="header.editing">{{header.msg}}</span>
-              <p class="text-right"><span ng-hide="header.editing" ng-click="header.editing = true" class="glyphicon glyphicon-edit"></span></p>
+              <span ng-show="header.onmouse && !header.editing" ng-click="header.editing = true" class="glyphicon glyphicon-edit"></span>
               <form class=col-sm-12 ng-show=header.editing ng-submit="edit_header(header)">
                 <div class="input-group">
                   <input type="text" class="form-control" ng-model="header.cell_txt"></input>
@@ -67,9 +67,9 @@
           </tr>
           <tr ng-repeat="(name, data) in userdata">
             <td class=col-sm-2>{{name}}</td>
-            <td class=col-sm-2 ng-repeat="d in data">
+            <td class=col-sm-2 ng-repeat="d in data" ng-mouseover="mouseover(d)" ng-mouseleave="mouseleave(d)">
               <span ng-hide="d.editing">{{d.msg}}</span>
-              <p class="text-right"><span ng-hide="d.editing" ng-click="d.editing = true" class="glyphicon glyphicon-edit"></span></p>
+              <span ng-show="d.onmouse && !d.editing" ng-click="d.editing = true" class="glyphicon glyphicon-edit"></span>
               <form class=col-sm-12 ng-show=d.editing ng-submit="edit_cell(d)">
                 <div class="input-group">
                   <input type="text" class="form-control" ng-model="d.cell_txt"></input>

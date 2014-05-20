@@ -17,6 +17,7 @@ isasakaEventApp.controller "EventCtrl", ($scope, $location, $http) ->
           cell_txt: header
           editing: false
           idx: i
+          onmouse: false
       console.log $scope.headers
       $scope.userdata = {}
       for username of data.users
@@ -28,6 +29,7 @@ isasakaEventApp.controller "EventCtrl", ($scope, $location, $http) ->
             editing: false
             name: username
             idx: i
+            onmouse: false
 
       $scope.data = data
 
@@ -79,5 +81,10 @@ isasakaEventApp.controller "EventCtrl", ($scope, $location, $http) ->
       data.cell_text = ""
       $scope.load()
 
+  $scope.mouseover = (data)->
+    data.onmouse = true
+
+  $scope.mouseleave = (data)->
+    data.onmouse = false
 
   $scope.load()
