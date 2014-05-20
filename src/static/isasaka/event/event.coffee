@@ -1,4 +1,13 @@
 isasakaEventApp = angular.module("isasakaEventApp", [])
+
+isasakaEventApp.directive 'focusMe', ()->
+  scope:
+    trigger: '=focusMe'
+  link: (scope, element)->
+    scope.$watch 'trigger', (value)->
+      element[0].focus() if value
+      scope.focusInput = false
+
 isasakaEventApp.controller "EventCtrl", ($scope, $location, $http) ->
   $scope.event_name = $location.search().event
   return  unless $scope.event_name
