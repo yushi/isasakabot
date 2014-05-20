@@ -27,7 +27,6 @@ isasakaEventApp.controller "EventCtrl", ($scope, $location, $http) ->
           editing: false
           idx: i
           onmouse: false
-      console.log $scope.headers
       $scope.userdata = {}
       for username of data.users
         $scope.userdata[username] = []
