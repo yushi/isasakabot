@@ -86,23 +86,29 @@
             </td>
             <th>-</th>
           </tr>
+          <tr>
+            <th class=col-sm-2>
+              <!-- form to add new column-->
+              <span class="glyphicon glyphicon-plus" ng-hide=adding_user ng-click="adding_user = true"></span>
+              <form class=col-sm-12 ng-show=adding_user ng-submit="add_user()">
+                <div class="input-group">
+                  <input type="text" class="form-control" ng-model="new_user" placeholder="User"></input>
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type=submit>
+                      <span class="glyphicon glyphicon-floppy-save"></span>
+                    </button>
+                    <button class="btn btn-default" ng-click="new_user = null">
+                      <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                  </span>
+                </div>
+              </form>
+            </th>
+            <th class=col-sm-2 ng-repeat="header in headers">-</th>
+            <th>-</th>
+          </tr>
         </tbody>
       </table>
-      <!-- form to add new user-->
-      <span class="glyphicon glyphicon-plus" ng-hide=adding_user ng-click="adding_user = true"></span>
-      <form class=col-sm-5 ng-show=adding_user ng-submit="add_user()">
-        <div class="input-group">
-          <input type="text" class="form-control" ng-model="new_user" placeholder="Username"></input>
-          <span class="input-group-btn">
-            <button class="btn btn-default" type=submit>
-              <span class="glyphicon glyphicon-floppy-save"></span>
-            </button>
-            <button class="btn btn-default" ng-click="new_user = null">
-              <span class="glyphicon glyphicon-remove"></span>
-            </button>
-          </span>
-        </div>
-      </form>
     </div>
   </div>
 </body>
