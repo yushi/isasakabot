@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "coffee-script": "^1.7.1",
+    "do-wrapper": "^0.1.1",
     "gulp": "^3.6.2",
     "gulp-coffee": "^1.4.3",
     "gulp-util": "^2.2.14",
