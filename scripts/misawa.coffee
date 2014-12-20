@@ -46,6 +46,11 @@ search = (keywords)->
   return all
 
 module.exports = (robot) ->
+  robot.hear /^MISAWA$/i, (msg) ->
+    entry = data[Math.floor(Math.random() * data.length)]
+    str = entry.image if entry
+    msg.send str
+
   robot.hear /^MISAWA (.*)/i, (msg) ->
     str = 'Sorry, Not found.'
     matched = search(msg.match[1].split(' '))
