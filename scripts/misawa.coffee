@@ -46,17 +46,22 @@ search = (keywords)->
   return all
 
 module.exports = (robot) ->
-  robot.hear /^MISAWA$/i, (msg) ->
+  robot.hear /^M(?:ISAWA)?$/i, (msg) ->
     entry = data[Math.floor(Math.random() * data.length)]
-    str = entry.image if entry
-    msg.send str
+    if entry
+      msg.send "#{entry.title} by #{entry.character}"
+      msg.send entry.image
+    else
+      msg.send 'Sorry, Not found.'
 
-  robot.hear /^MISAWA (.*)/i, (msg) ->
-    str = 'Sorry, Not found.'
+  robot.hear /^M(?:ISAWA)? (.*)/i, (msg) ->
     matched = search(msg.match[1].split(' '))
     entry = matched[Math.floor(Math.random() * matched.length)]
-    str = entry.image if entry
-    msg.send str
+    if entry
+      msg.send "#{entry.title} by #{entry.character}"
+      msg.send entry.image
+    else
+      msg.send 'Sorry, Not found.'
 
   robot.hear /^MISAWA RELOAD$/i, ()->
     update_db()
