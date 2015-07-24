@@ -6,7 +6,7 @@
 #   MISAWA RELOAD - Reload database
 http = require 'http'
 
-data_url = 'http://horesase-boys.herokuapp.com/meigens.json'
+data_url = 'http://horesase.github.io/horesase-boys/meigens.json'
 data = []
 
 update_db = ()->
